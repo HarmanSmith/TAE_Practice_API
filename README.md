@@ -1,2 +1,2 @@
-# TAE_Practice_API
- Practice demo
+# API Automated Testing
+ Practice demo for API testing
