@@ -44,8 +44,7 @@ def test_users_return_200_and_avatar_url(config):
 # Response should be well formed Json object that should contain the following fields:
 # name, job, id, createdAt
 def test_create_user_successful(config):
-    """We post to create a new user and check the response.
-    The reference is from an old videogame called Dragon Quest"""
+    """We post to create a new user and check the response."""
     request_body = {
         'name': 'Erdrick',
         'job': 'Hero'
