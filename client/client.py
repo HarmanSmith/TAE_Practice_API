@@ -9,6 +9,8 @@ from hamcrest import is_, is_not
 
 
 class ReqResClient:
+
+
     def __init__(self, url: str):
         self.url = url
 
@@ -19,31 +21,34 @@ class ReqResClient:
     def __users_url(self) -> str:
         return f"{self.url}/users"
 
+    @property
+    def __login_url(self) -> str:
+        return f"{self.url}/login"
 
     # Here we define all operations our API does, as python functions
     def get_users(self) -> Response:
         """Calls endpoint GET /users"""
         return requests.get(self.__users_url)
 
-    @property
-    def id(self):
-        return requests.get(self.__users_url).json()['data']['id']
+    def get_users_json(self):
+        response = requests.get(self.__users_url)
+        response_json = response.json()
+        return response_json
 
-    @property
-    def email(self):
-        return requests.get(self.__users_url).json()['data']['email']
+    def post_user(self, name_str, job_str):
+        """requires name and job"""
+        request_body = {
+            'name': name_str,
+            'job': job_str
+        }
+        return requests.post(self.__users_url, data = request_body)
 
-    @property
-    def first_name(self):
-        return requests.get(self.__users_url).json()['data']['first_name']
-
-    @property
-    def last_name(self):
-        return requests.get(self.__users_url).json()['data']['last_name']
-
-    @property
-    def avatar(self):
-        return requests.get(self.__users_url).json()['data']['avatar']
+    def post_login(self, username, password):
+        request_body = {
+            'email': username,
+            'password': password
+        }
+        return requests.post(self.__login_url, data = request_body)
 
 
 # For each user retrieved verify URL inside the avatar property is a non empty string and a valid url
