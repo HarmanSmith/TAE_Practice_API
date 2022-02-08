@@ -7,5 +7,10 @@ pipeline {
         echo 'testing api...'
       }
     }
+    stage("cleaning up"){
+      steps{
+        echo 'cleaning up...'
+      }
+    }
   }
 }
