@@ -5,15 +5,12 @@ providing functions that will be used from tests.
 """
 import requests
 from requests import Response
-from hamcrest import is_, is_not
 
 
 class ReqResClient:
 
-
     def __init__(self, url: str):
         self.url = url
-
 
     # Here we define all the API endpoints.
     # Endpoints are private as the consumer classes won't need to access urls directly.
@@ -41,25 +38,11 @@ class ReqResClient:
             'name': name_str,
             'job': job_str
         }
-        return requests.post(self.__users_url, data = request_body)
+        return requests.post(self.__users_url, data=request_body)
 
     def post_login(self, username, password):
         request_body = {
             'email': username,
             'password': password
         }
-        return requests.post(self.__login_url, data = request_body)
-
-
-# For each user retrieved verify URL inside the avatar property is a non empty string and a valid url
-
-# When we call POST /api/users with a valid payload we should get a 201 response.
-# Response should be well formed Json object that should contain the following fields:
-# name, job, id, createdAt
-
-# When we call POST /api/login using a payload with name but no password,
-# we should get a 400 response. error should read "Missing password"
-
-# When we call POST /api/login using a valid payload, we should get 200 response.
-# The response object should contain the "token" property and its value should be a
-# non-null and non-empty string
+        return requests.post(self.__login_url, data=request_body)
