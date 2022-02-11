@@ -14,6 +14,7 @@ pipeline{
         steps {
 	    sh 'whoami'
 	    sh 'hostname'
+	    sh 'export PATH=/usr/local/bin:/var/lib/jenkins/.local/bin:$PATH'
 	    sh 'echo $PATH'
 	    sh 'python -V'
             sh 'python --version'
