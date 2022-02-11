@@ -12,10 +12,10 @@ pipeline{
 
     stage('Build') {
         steps {
-	    whoami
-	    hostname
-	    echo $PATH
-	    python -V
+	    sh 'whoami'
+	    sh 'hostname'
+	    sh 'echo $PATH'
+	    sh 'python -V'
             sh 'python --version'
             sh 'pip install --upgrade pip'
             sh 'pip install --no-cache-dir -r requirements.txt'
